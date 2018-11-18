@@ -4,6 +4,7 @@ import * as Joi from 'joi';
 export const ID_PARAMETER = Joi.string().required();
 
 export const USER_PAYLOAD = Joi.object().keys({
+    id: ID_PARAMETER,
     login: Joi.string().min(4).required(),
     password: Joi.string().min(5).required()
 });

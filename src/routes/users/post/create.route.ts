@@ -24,7 +24,7 @@ import { UsersService } from '../../../services/users.service';
         },
         description: 'Create one user',
         notes: 'Create a new user and returns it',
-        tags: [ 'api', 'user' ]
+        tags: [ 'api', 'users' ]
     }
 })
 export class PostCreateUserRoute implements OnPost {
