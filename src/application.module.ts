@@ -12,6 +12,7 @@ import {DeleteOneMovieRoute} from './routes/movies/delete';
 import {GetAllMoviesRoute, GetOneMovieRoute} from './routes/movies/get';
 import {PutUpdateMovieRoute} from './routes/movies/put';
 import {MoviesDocumentService, MoviesService} from './services';
+import {PostCreateMovieRoute} from './routes/movies/post';
 
 const usersDocumentServiceFactory = (mongoClientService: MongoClientService) => new UsersDocumentService(mongoClientService);
 const moviesDocumentServiceFactory = (mongoClientService: MongoClientService) => new MoviesDocumentService(mongoClientService);
@@ -30,7 +31,7 @@ const moviesDocumentServiceFactory = (mongoClientService: MongoClientService) =>
         DeleteOneMovieRoute,
         GetAllMoviesRoute,
         GetOneMovieRoute,
-        PostCreateUserRoute,
+        PostCreateMovieRoute,
         PutUpdateMovieRoute
     ],
     providers: [
