@@ -5,11 +5,17 @@ import {SwagModule} from '@hapiness/swag';
 import {Config} from '@hapiness/config';
 import {MongoClientService, MongoModule} from '@hapiness/mongo';
 import {UserModel} from './models/users';
-import {UsersDocumentService} from './services/users-document.service';
-import {UsersService} from './services/users.service';
+import {UsersDocumentService, UsersService} from './services';
 import {PostCreateUserRoute} from './routes/users/post';
+import {MovieModel} from './models/movies';
+import {DeleteOneMovieRoute} from './routes/movies/delete';
+import {GetAllMoviesRoute, GetOneMovieRoute} from './routes/movies/get';
+import {PutUpdateMovieRoute} from './routes/movies/put';
+import {MoviesDocumentService, MoviesService} from './services';
+import {PostCreateMovieRoute} from './routes/movies/post';
 
 const usersDocumentServiceFactory = (mongoClientService: MongoClientService) => new UsersDocumentService(mongoClientService);
+const moviesDocumentServiceFactory = (mongoClientService: MongoClientService) => new MoviesDocumentService(mongoClientService);
 
 @HapinessModule({
     version: '1.0.0',
@@ -20,12 +26,20 @@ const usersDocumentServiceFactory = (mongoClientService: MongoClientService) => 
     ],
     declarations: [
         UserModel,
-        PostCreateUserRoute
+        MovieModel,
+        PostCreateUserRoute,
+        DeleteOneMovieRoute,
+        GetAllMoviesRoute,
+        GetOneMovieRoute,
+        PostCreateMovieRoute,
+        PutUpdateMovieRoute
     ],
     providers: [
         HttpServerService,
         UsersService,
-        { provide: UsersDocumentService, useFactory: usersDocumentServiceFactory, deps: [ MongoClientService ] }
+        MoviesService,
+        { provide: UsersDocumentService, useFactory: usersDocumentServiceFactory, deps: [ MongoClientService ] },
+        { provide: MoviesDocumentService, useFactory: moviesDocumentServiceFactory, deps: [ MongoClientService ] }
     ]
 })
 export class ApplicationModule implements OnStart, OnError {
