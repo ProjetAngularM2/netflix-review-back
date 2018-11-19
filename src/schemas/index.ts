@@ -11,8 +11,8 @@ export const USER_PAYLOAD = Joi.object().keys({
 
 export const USER_RESPONSE = Joi.object().keys({
     id: ID_PARAMETER,
-    login: Joi.reach(USER_PAYLOAD, 'login'),
-    password: Joi.reach(USER_PAYLOAD, 'password')
+    login: Joi.reach(USER_PAYLOAD, 'login').required(),
+    password: Joi.reach(USER_PAYLOAD, 'password').required()
 });
 
 export const MOVIE_PAYLOAD = Joi.object().keys({
