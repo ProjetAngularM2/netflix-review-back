@@ -58,7 +58,7 @@ export const MOVIE_RESPONSE = Joi.object().keys({
     Writer: Joi.reach(MOVIE_PAYLOAD, 'Writer'),
     Actors: Joi.reach(MOVIE_PAYLOAD, 'Actors'),
     Plot: Joi.reach(MOVIE_PAYLOAD, 'Plot'),
-    Language: Joi.reach(MOVIE_PAYLOAD, 'Langage'),
+    Language: Joi.reach(MOVIE_PAYLOAD, 'Language'),
     Country: Joi.reach(MOVIE_PAYLOAD, 'Country'),
     Awards: Joi.reach(MOVIE_PAYLOAD, 'Awards'),
     Poster: Joi.reach(MOVIE_PAYLOAD, 'Poster'),
