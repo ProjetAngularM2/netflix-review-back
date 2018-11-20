@@ -16,6 +16,7 @@ export const USER_RESPONSE = Joi.object().keys({
 });
 
 export const MOVIE_PAYLOAD = Joi.object().keys({
+    id: ID_PARAMETER,
     Title: Joi.string(),
     Year: Joi.string().max(4),
     Rated: Joi.string(),
@@ -74,3 +75,5 @@ export const MOVIE_RESPONSE = Joi.object().keys({
     Website: Joi.reach(MOVIE_PAYLOAD, 'Website'),
     Response: Joi.reach(MOVIE_PAYLOAD, 'Response')
 });
+
+export const MOVIES_RESPONSE = Joi.array().items(MOVIE_RESPONSE).unique().min(1);

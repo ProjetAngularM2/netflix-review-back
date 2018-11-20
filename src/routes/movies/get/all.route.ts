@@ -2,7 +2,7 @@ import { OnGet, Request, Route } from '@hapiness/core';
 import { LoggerService } from '@hapiness/logger';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import {MOVIE_RESPONSE} from '../../../schemas';
+import {MOVIES_RESPONSE} from '../../../schemas';
 import {MoviesService} from '../../../services';
 import {Movie} from '../../../interfaces';
 
@@ -12,7 +12,7 @@ import {Movie} from '../../../interfaces';
     config: {
         response: {
             status: {
-                200: MOVIE_RESPONSE
+                200: MOVIES_RESPONSE
             }
         },
         description: 'Get all movies',
