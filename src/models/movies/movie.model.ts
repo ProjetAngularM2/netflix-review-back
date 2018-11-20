@@ -25,111 +25,45 @@ export class MovieModel extends Model {
         this.schema = new dao.Schema({
                 Title: {
                     type: String,
-                    trim: true
+                    trim: true,
+                    required: true
                 },
                 Year: {
                     type: String,
-                    minlength: 4,
-                    maxlength: 4,
-                    trim: true
-                },
-                Rated: {
-                    type: String,
-                    trim: true
-                },
-                Released: {
-                    type: String,
-                    trim: true
-                },
-                Runtime: {
-                    type: String,
-                    trim: true
+                    match: /^\d{4}$/,
+                    trim: true,
+                    required: true
                 },
                 Genre: {
                     type: String,
-                    trim: true
-                },
-                Director: {
-                    type: String,
-                    trim: true
-                },
-                Writer: {
-                    type: String,
-                    trim: true
-                },
-                Actors: {
-                    type: String,
-                    trim: true
+                    trim: true,
+                    required: true
                 },
                 Plot: {
                     type: String,
-                    trim: true
-                },
-                Language: {
-                    type: String,
-                    trim: true
-                },
-                Country: {
-                    type: String,
-                    trim: true
-                },
-                Awards: {
-                    type: String,
-                    trim: true
+                    trim: true,
+                    required: true
                 },
                 Poster: {
                     type: String,
-                    trim: true
+                    trim: true,
+                    required: true
                 },
                 Ratings: {
-                    source: {
+                    Source: {
                         type: String,
                         trim: true
                     },
-                    value: {
+                    Value: {
                         type: String,
                         trim: true
                     }
                 },
                 Metascore: {
                     type: String,
-                    trim: true
-                },
-                imdbRating: {
-                    type: String,
-                    trim: true
-                },
-                imdbVotes: {
-                    type: String,
-                    trim: true
-                },
-                imdbID: {
-                    type: String,
-                    trim: true
-                },
-                Type: {
-                    type: String,
-                    trim: true
-                },
-                DVD: {
-                    type: String,
-                    trim: true
-                },
-                BoxOffice: {
-                    type: String,
-                    trim: true
-                },
-                Production: {
-                    type: String,
-                    trim: true
-                },
-                Website: {
-                    type: String,
-                    trim: true
-                },
-                Response: {
-                    type: String,
-                    trim: true
+                    match: /^\d{1,3}$/,
+                    trim: true,
+                    required: true
                 }
             }
         , {
