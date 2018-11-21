@@ -28,4 +28,10 @@ export class UsersDocumentService {
             );
     }
 
+    login(user: User): Observable<User> {
+        return from(this._document.find({'login': user.login, 'password': user.password})).pipe(
+            map((doc: User) => !!doc ? doc : undefined)
+        );
+    }
+
 }

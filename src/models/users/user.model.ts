@@ -43,9 +43,6 @@ export class UserModel extends Model {
                 virtuals: true,
                 transform: function (doc, ret) {
                     delete ret._id;
-                    if (!!ret.managerId) {
-                        ret.managerId = doc.managerId.toString();
-                    }
                     return ret;
                 }
             }

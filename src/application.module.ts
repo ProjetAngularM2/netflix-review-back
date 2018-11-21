@@ -6,7 +6,7 @@ import {Config} from '@hapiness/config';
 import {MongoClientService, MongoModule} from '@hapiness/mongo';
 import {UserModel} from './models/users';
 import {UsersDocumentService, UsersService} from './services';
-import {PostCreateUserRoute} from './routes/users/post';
+import {PostCreateUserRoute, PostLoginUserRoute} from './routes/users/post';
 import {MovieModel} from './models/movies';
 import {DeleteOneMovieRoute} from './routes/movies/delete';
 import {GetAllMoviesRoute, GetOneMovieRoute} from './routes/movies/get';
@@ -32,7 +32,8 @@ const moviesDocumentServiceFactory = (mongoClientService: MongoClientService) =>
         GetAllMoviesRoute,
         GetOneMovieRoute,
         PostCreateMovieRoute,
-        PutUpdateMovieRoute
+        PutUpdateMovieRoute,
+        PostLoginUserRoute
     ],
     providers: [
         HttpServerService,

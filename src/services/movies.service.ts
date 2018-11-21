@@ -45,7 +45,7 @@ export class MoviesService {
             );
     }
 
-    update(id: string, movie: Movie): Observable<Movie> {
+    update(id: string, movie: any): Observable<Movie> {
         return this._moviesDocumentService.findByIdAndUpdate(id, movie)
             .pipe(
                 catchError(e =>

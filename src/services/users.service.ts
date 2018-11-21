@@ -1,8 +1,8 @@
 import { Biim } from '@hapiness/biim';
 import { HTTPHandlerResponse, Injectable } from '@hapiness/core';
 
-import {Observable, throwError} from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import {Observable, of, throwError} from 'rxjs';
+import {catchError, flatMap, map} from 'rxjs/operators';
 import { User } from '../interfaces';
 import { UsersDocumentService } from './users-document.service';
 
@@ -26,6 +26,20 @@ export class UsersService {
                         throwError(Biim.preconditionFailed(e.message))
                 ),
                 map(_ => ({ response: _, statusCode: 201 }))
+            );
+    }
+
+    login(user: User): Observable<User> {
+        return  this._usersDocumentService.login(user)
+            .pipe(
+                catchError(e =>
+                        throwError(Biim.preconditionFailed(e.message))
+                ),
+                flatMap(_ =>
+                    !!_ ?
+                        of(_) :
+                        throwError(Biim.notFound('Connection error'))
+                )
             );
     }
 
