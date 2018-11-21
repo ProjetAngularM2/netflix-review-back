@@ -12,6 +12,10 @@ export class MoviesService {
 
     constructor( private _moviesDocumentService: MoviesDocumentService) {}
 
+    /**
+     * retourne le film qui possède l'id donné
+     * @param id
+     */
     one(id: string): Observable<Movie> {
         return this._moviesDocumentService.findById(id)
             .pipe(
@@ -19,17 +23,22 @@ export class MoviesService {
                 flatMap(_ =>
                     !!_ ?
                         of(_) :
-                        throwError(Biim.notFound(`People with id '${id}' not found`))
+                        throwError(Biim.notFound(`Movie with id '${id}' not found`))
                 )
             );
     }
 
+    /**
+     * liste l'ensemble des films dans la base de donnée
+     */
     listAll(): Observable<Movie[] | void> {
         return this._moviesDocumentService.find();
     }
 
-    // TODO update et ajouter un avis
-
+    /**
+     * ajoute un film a la base de donnée
+     * @param movie
+     */
     create(movie: Movie): Observable<HTTPHandlerResponse> {
         return of(movie)
             .pipe(
@@ -45,6 +54,11 @@ export class MoviesService {
             );
     }
 
+    /**
+     * met a jour le film qui possède l'id mis en paramètre par la nouvelle valeur
+     * @param id
+     * @param movie
+     */
     update(id: string, movie: any): Observable<Movie> {
         return this._moviesDocumentService.findByIdAndUpdate(id, movie)
             .pipe(
@@ -63,6 +77,10 @@ export class MoviesService {
             );
     }
 
+    /**
+     * supprime le film qui possède l'id mis en paramètre
+     * @param id
+     */
     delete(id: string): Observable<void> {
         return this._moviesDocumentService.findByIdAndRemove(id)
             .pipe(

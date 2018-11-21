@@ -16,6 +16,10 @@ export class MoviesDocumentService {
         this._document = this._mongoClientService.getModel({ adapter: 'mongoose' }, MovieModel);
     }
 
+    /**
+     * recupere dans la base de donnée le film avec l'id donné en parametre
+     * @param id
+     */
     findById(id: string): Observable<Movie | void> {
         return from(this._document.findById(id))
             .pipe(
@@ -23,6 +27,9 @@ export class MoviesDocumentService {
             );
     }
 
+    /**
+     * retourne l'ensemble des films présent dans la base de donnée
+     */
     find(): Observable<Movie[] | void> {
         return from(this._document.find({}))
             .pipe(
@@ -30,6 +37,10 @@ export class MoviesDocumentService {
             );
     }
 
+    /**
+     * ajoute le film mis en parametre dans la base de donnée
+     * @param movie
+     */
     create(movie: Movie): Observable<Movie> {
         return from(this._document.create(movie))
             .pipe(
@@ -37,6 +48,11 @@ export class MoviesDocumentService {
             );
     }
 
+    /**
+     * trouve le film correspondant a l'id donné puis le met a jour avec la nouvelle valeur
+     * @param id
+     * @param movie
+     */
     findByIdAndUpdate(id: string, movie: Movie): Observable<Movie | void> {
         return from(this._document.findByIdAndUpdate(id, movie, { new: true }))
             .pipe(
@@ -44,6 +60,10 @@ export class MoviesDocumentService {
             );
     }
 
+    /**
+     * trouve le film correspondant a l'id doné puis le supprime de la base de donnée
+     * @param id
+     */
     findByIdAndRemove(id: string): Observable<Movie | void> {
         return from(this._document.findByIdAndRemove(id))
             .pipe(
@@ -51,7 +71,7 @@ export class MoviesDocumentService {
             )
     }
 
-    // TODO ajout d'avis
+
 
 
 }
